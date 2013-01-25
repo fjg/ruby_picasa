@@ -11,6 +11,9 @@ module RubyPicasa
 
   class PicasaTokenError < PicasaError
   end
+
+  class PicasaTokenRevokedError < PicasaError
+  end
 end
 
 # == Authorization
@@ -54,6 +57,7 @@ class Picasa
     # to access their Picasa account. The token_from_request and
     # authorize_request methods can be used to handle the resulting redirect
     # from Picasa.
+
     def authorization_url(return_to_url, request_session = true, secure = false, authsub_url = nil)
       session = request_session ? '1' : '0'
       secure = secure ? '1' : '0'
@@ -192,6 +196,16 @@ class Picasa
   def initialize(token)
     @token = token
     @request_cache = {}
+  end
+
+  # Takes a SubAuthToken and verify if it's still valid
+  # see: https://developers.google.com/accounts/docs/AuthSub?hl=fr#AuthSubTokenInfo
+  def valid_token?
+    http = Net::HTTP.new("www.google.com", 443)
+    http.use_ssl = true
+    response = http.get('/accounts/AuthSubTokenInfo', auth_header)
+
+    response.code.to_s == "200"
   end
 
   # Attempt to upgrade the current AuthSub token to a permanent one. This only
