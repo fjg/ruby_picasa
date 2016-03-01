@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ruby-picasa}
-  s.version = "0.2.3"
+  s.version = "0.2.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["pangloss", "darrick@innatesoftware.com", "fjg@happycoders.org"]
-  s.date = %q{2010-11-11}
+  s.authors = ["pangloss", "darrick@innatesoftware.com", "fjg@happycoders.org", 'fourcade.m+ruby_picasa@gmail.com']
+  s.date = %q{2015-12-05}
   s.description = %q{Provides a super easy to use object layer for authenticating and accessing Picasa through their API.}
-  s.email = %q{fjg@happycoders.org}
+  s.email = %q{fourcade.m+ruby_picasa@gmail.com}
   s.extra_rdoc_files = [
     "README.txt"
   ]
@@ -39,15 +39,15 @@ Gem::Specification.new do |s|
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/fjg/ruby_picasa}
+  s.homepage = %q{http://github.com/mfo/ruby_picasa}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Provides a super easy to use object layer for authenticating and accessing Picasa through their API.}
   s.test_files = [
     "spec/ruby_picasa/types_spec.rb",
-     "spec/ruby_picasa_spec.rb",
-     "spec/spec_helper.rb"
+    "spec/ruby_picasa_spec.rb",
+    "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -56,11 +56,20 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<objectify-xml>, [">= 0.2.3"])
+      s.add_runtime_dependency(%q<signet>, [">= 0.6.0"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.2"])
+      s.add_runtime_dependency(%q<google-api-client>, [">= 0.8.2"])
     else
       s.add_dependency(%q<objectify-xml>, [">= 0.2.3"])
+      s.add_dependency(%q<signet>, [">= 0.6.0"])
+      s.add_dependency(%q<activesupport>, [">= 3.2"])
+      s.add_dependency(%q<google-api-client>, [">= 0.8.2"])
     end
   else
     s.add_dependency(%q<objectify-xml>, [">= 0.2.3"])
+    s.add_dependency(%q<signet>, [">= 0.6.0"])
+    s.add_dependency(%q<activesupport>, [">= 3.2"])
+    s.add_dependency(%q<google-api-client>, [">= 0.8.2"])
   end
 end
 
