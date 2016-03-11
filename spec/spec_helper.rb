@@ -11,3 +11,21 @@ end
 RSpec.configure do |config|
   config.mock_framework = :mocha
 end
+
+class DummyTokenStore
+  def initialize
+    @tokens = {}
+  end
+
+  def load(id)
+    @tokens[id]
+  end
+
+  def store(id, token)
+    @tokens[id] = token
+  end
+
+  def delete(id)
+    @tokens.delete(id)
+  end
+end

@@ -8,48 +8,51 @@ class Picasa
 end
 
 describe 'Picasa class methods' do
-  let(:client_id)           { 'c_id' }
-  let(:redirect_uri)        { 'https://localhost.com/redirect_uri' }
+  let(:client_id)    { Google::Auth::ClientId.new('testclient', 'notasecret') }
+  let(:token_store)  { DummyTokenStore.new }
+  let(:redirect_uri) { 'https://localhost.com/redirect_uri' }
 
   # def authorization_url(client_id, redirect_uri, application_name, application_version)
   it 'should generate an authorization_url' do
-    url = Picasa.authorization_url(client_id, redirect_uri)
+    url = Picasa.authorization_url(client_id, token_store, redirect_uri)
     expect(url).to include(redirect_uri)
-    expect(url).to include(client_id)
     expect(url).to include(Picasa::OAUTH_SCOPE)
   end
 
-  describe 'code_in_request?' do
-    it 'should be nil if no token' do
-      request = mock('request', :parameters => { })
-      Picasa.code_in_request?(request).should be_nil
+  describe 'code_in_request_params?' do
+    it 'should be false if no token' do
+      request_params = {}
+      Picasa.code_in_request_params?(request_params).should be false
     end
 
-    it 'should not be nil if there is a token' do
-      request = mock('request', :parameters => { 'code' => 'abc' })
-      Picasa.code_in_request?(request).should_not be_nil
+    it 'should be true if there is a token' do
+      request_params = {'code' => 'abc'}
+      Picasa.code_in_request_params?(request_params).should be true
     end
   end
 
-  describe 'code_from_request' do
+  describe 'code_from_request_params' do
     it 'should pluck the token from the request' do
-      request = mock('request', :parameters => { 'code' => 'abc' })
-      Picasa.code_from_request(request).should == 'abc'
+      request_params = {'code' => 'abc'}
+      Picasa.code_from_request_params(request_params).should == 'abc'
     end
     it 'should raise if no token is present' do
-      request = mock('request', :parameters => { })
+      request_params = {}
       lambda do
-        Picasa.code_from_request(request)
+        Picasa.code_from_request_params(request_params)
       end.should raise_error(RubyPicasa::PicasaTokenError)
     end
   end
 
   it 'should authorize a request' do
-    Picasa.expects(:code_from_request).with(:request).returns('abc')
+    urc = Google::Auth::UserRefreshCredentials.new
+    Google::Auth::UserAuthorizer.any_instance.stubs(:get_credentials_from_code).with(instance_of(Hash)).returns(urc)
+    Picasa.expects(:code_from_request_params).with(instance_of(Hash)).returns('abc')
     picasa = mock('picasa')
-    Picasa.expects(:new).with(instance_of(Signet::OAuth2::Client)).returns(picasa)
+    request_params = { code: 'abc' }
+    Picasa.expects(:new).with(instance_of(Google::Auth::UserRefreshCredentials)).returns(picasa)
     picasa.expects(:authorize_token!).with()
-    Picasa.authorize_request(:client_id, :client_secret, redirect_uri, :request).should == picasa
+    Picasa.authorize_request(client_id, token_store, redirect_uri, request_params).should == picasa
   end
 
   it 'should recognize absolute urls' do
@@ -148,11 +151,12 @@ describe Picasa do
     @http.stubs(:request).returns @response
     @http.stubs(:use_ssl=)
     Net::HTTP.stubs(:new).returns(@http)
-    @p = Picasa.new Signet::OAuth2::Client.new(access_token: 'access_token')
+    @p = Picasa.new Google::Auth::UserRefreshCredentials.new(access_token: 'access_token')
   end
 
   it 'should initialize' do
-    expect(@p.oauth2_signet).to be_an_instance_of(Signet::OAuth2::Client)
+    expect(@p.credentials).to be_an_instance_of(Google::Auth::UserRefreshCredentials)
+    expect(@p.credentials).to be_a(Signet::OAuth2::Client)
   end
 
   describe 'authorize_token!' do
