@@ -10,4 +10,7 @@ group :development do
   gem 'bundler', '1.11.2'
   gem 'rake', '~> 10.0'
   gem 'rspec', '~> 3.0'
+  gem 'pry'
+  gem 'pry-nav'
+
 end
