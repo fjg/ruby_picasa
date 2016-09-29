@@ -224,6 +224,10 @@ module RubyPicasa
       rights == 'private'
     end
 
+    def protected?
+      rights == 'protected'
+    end
+
     def fetch_entries
       if entries.empty? and !@entries_requested
         @entries_requested = true

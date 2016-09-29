@@ -140,10 +140,125 @@ describe Album do
       @album.videos.length.should == 1
     end
 
+    it 'should have a numeric id' do
+      @object.id.should_not be_nil
+      @object.id.to_s.should match(/\A\d+\Z/)
+    end
+
+    it 'should get links by name' do
+      @album.link('abc').should be_nil
+      @album.link('alternate').href.should == 'https://picasaweb.google.com/album_alternate_no_auth_key'
+    end
+
+    it 'should not be public' do
+      @album.public?.should be(false)
+    end
+
+    it 'should not be private' do
+      @album.private?.should be(false)
+    end
+
+    it 'should be protected' do
+      @album.protected?.should be(true)
+    end
+
     describe 'first Video' do
       before do
         @video = @album.videos.first
         @video.should be_an_instance_of(Photo)
+      end
+
+      it 'should have a parent' do
+        @video.parent.should == @album
+      end
+
+      it 'should not have an author' do
+        @video.author.should be_nil
+      end
+
+      it 'should have a content' do
+        @video.content.should be_an_instance_of(PhotoUrl)
+      end
+
+      it 'should have a content with medium as video' do
+        @video.content.medium.should == 'video'
+      end
+
+      it 'should have a license' do
+        @video.license.should be_an_instance_of(Photo::License)
+        @video.license.id.should == 0
+        @video.license.name.should == "All Rights Reserved"
+      end
+
+      it 'should have 3 thumbnails' do
+        @video.thumbnails.length.should == 3
+        @video.thumbnails.each do |t|
+          t.should be_an_instance_of(ThumbnailUrl)
+        end
+      end
+
+      it 'should have a numeric id' do
+        @video.id.should_not be_nil
+        @video.id.to_s.should match(/\A\d+\Z/)
+      end
+
+      it 'should have a default url' do
+        @video.url.should == 'https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18'
+      end
+
+      it 'should have thumbnail urls' do
+        @video.url('72').should == 'https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/s72/IMG_2112.mp4'
+      end
+
+      it 'should have a default video url with options true' do
+        @video.url(nil, true).should == [
+          'https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18',
+          { :width => 360, :height => 360 }
+        ]
+      end
+
+      it 'should have a default url with options' do
+        @video.url(nil, :id => 'p').should == [
+          'https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18',
+          { :width => 360, :height => 360, :id => 'p' }
+        ]
+      end
+
+      it 'should have a default url with options first' do
+        @video.url(:id => 'p').should == [
+          'https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18',
+          { :width => 360, :height => 360, :id => 'p' }
+        ]
+      end
+
+      it 'should have thumbnail urls with options' do
+        @video.url('72', {:class => 'x'}).should == [
+          'https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/s72/IMG_2112.mp4',
+          { :width => 72, :height => 72, :class => 'x' }
+        ]
+      end
+
+      it 'should have thumbnail info' do
+        @video.thumbnail('72').width.should == 72
+      end
+
+      it 'should retrieve valid thumbnail info' do
+        video = mock('video')
+        thumb = mock('thumb')
+        video.expects(:thumbnails).returns([thumb])
+        @video.session.expects(:get_url).with('https://picasaweb.google.com/data/feed/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662944626984482?authkey=abc',
+                                        {:thumbsize => '32c'}).returns(video)
+        @video.thumbnail('32c').should == thumb
+      end
+
+      it 'should retrieve valid thumbnail info and handle not found' do
+        @video.session.expects(:get_url).with('https://picasaweb.google.com/data/feed/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662944626984482?authkey=abc',
+                                        {:thumbsize => '32c'}).returns(nil)
+        @video.thumbnail('32c').should be_nil
+      end
+
+      it 'should have a timestamp' do
+        @video.timestamp.should_not be_nil
       end
 
       it 'should have an originalvideo' do
@@ -200,6 +315,15 @@ describe Album do
       @album.link('alternate').href.should == 'http://picasaweb.google.com/liz/Lolcats'
     end
 
+    it 'should be public' do
+      @album.public?.should be(true)
+    end
+
+    it 'should not be private' do
+      @album.private?.should be(false)
+    end
+
+
     describe 'photos' do
       it 'should use entries if available' do
         @album.expects(:session).never
@@ -228,14 +352,6 @@ describe Album do
         @album.expects(:session).returns(nil)
         @album.photos.should == []
       end
-    end
-
-    it 'should be public' do
-      @album.public?.should be(true)
-    end
-
-    it 'should not be private' do
-      @album.private?.should be(false)
     end
 
     describe 'first Photo' do
