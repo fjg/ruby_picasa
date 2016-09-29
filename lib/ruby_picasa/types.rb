@@ -1,7 +1,7 @@
 module RubyPicasa
   # attributes :url, :height, :width
   class PhotoUrl < Objectify::ElementParser
-    attributes :url, :height, :width
+    attributes :url, :height, :width, :medium
   end
 
 
@@ -224,10 +224,13 @@ module RubyPicasa
       rights == 'private'
     end
 
-    # The current page of photos in the album.
-    def photos(options = {})
-      if entries.empty? and !@photos_requested
-        @photos_requested = true
+    def protected?
+      rights == 'protected'
+    end
+
+    def fetch_entries
+      if entries.empty? and !@entries_requested
+        @entries_requested = true
         if session and data = feed
           self.entries = data.entries
         else
@@ -236,6 +239,14 @@ module RubyPicasa
       else
         entries
       end
+    end
+    # The current page of photos in the album.
+    def photos(options = {})
+      fetch_entries.reject(&:video?)
+    end
+
+    def videos(options = {})
+      fetch_entries.select(&:video?)
     end
   end
 
@@ -300,6 +311,18 @@ module RubyPicasa
       attributes :id, :name, :url
     end
 
+    class OriginalVideo < Objectify::ElementParser
+      attributes :channels,
+        :duration,
+        :fps,
+        :height,
+        :samplingrate,
+        :type,
+        :width
+      # attribute :audio_codec, 'audioCodec'
+      # attribute :video_codec, 'videoCodec'
+    end
+
     namespaces 'exif', 'georss', 'gml', 'gphoto'
 
     attributes :published,
@@ -311,7 +334,9 @@ module RubyPicasa
       :height,
       :description,
       :keywords,
-      :credit
+      :credit,
+      :videostatus
+
 
     flatten 'exif:tags'
     attribute :unique_id, 'exif:imageUniqueID'
@@ -330,12 +355,17 @@ module RubyPicasa
     attribute :location, 'gphoto:location'
     attribute :timestamp, 'gphoto:timestamp'
 
+
     flatten 'georss:where'
 
     has_one :point, RubyPicasa::Photo::Point, 'gml:Point'
     has_one :author, Author, 'author'
     has_one :license, RubyPicasa::Photo::License, 'gphoto:license'
+    has_one :originalvideo, RubyPicasa::Photo::OriginalVideo, 'gphoto:originalvideo'
 
+    def video?
+      !!originalvideo && !!videostatus
+    end
   end
 
 end

@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed gd:etag="W/&quot;Ak8ARH0yfip7ImA9XRFXEUU.&quot;" xmlns="http://www.w3.org/2005/Atom" xmlns:app="http://www.w3.org/2007/app" xmlns:exif="http://schemas.google.com/photos/exif/2007" xmlns:gd="http://schemas.google.com/g/2005" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml" xmlns:gphoto="http://schemas.google.com/photos/2007" xmlns:media="http://search.yahoo.com/mrss/" xmlns:openSearch="http://a9.com/-/spec/opensearch/1.1/">
+  <id>https://picasaweb.google.com/data/feed/user/110748374958450232683/albumid/1000000450232683</id>
+  <updated>2016-09-18T08:54:05.396Z</updated>
+  <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#album"/>
+  <title>Auto Backup</title>
+  <subtitle/>
+  <rights>protected</rights>
+  <icon>https://lh3.googleusercontent.com/-v99-AwrzYv0/VGn1eTwH9PE/AAAAAAAASms/roLjAYXzS6oCPFTFZq9VdUHi0ngElw8TACHM/s160-c/20141112</icon>
+  <link href="https://picasaweb.google.com/data/feed/api/user/110748374958450232683/albumid/1000000450232683" rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml"/>
+  <link href="https://picasaweb.google.com/album_alternate_no_auth_key" rel="alternate" type="text/html"/>
+  <link href="https://picasaweb.google.com/110748374958450232683?alabel=small_instant_upload" rel="alternate" type="text/html"/>
+  <link href="https://picasaweb.google.com/data/feed/api/user/110748374958450232683/albumid/1000000450232683?start-index=1&amp;max-results=1000" rel="self" type="application/atom+xml"/>
+  <author>
+    <name>Martin Fourcade</name>
+    <uri>https://picasaweb.google.com/110748374958450232683</uri>
+  </author>
+  <generator uri="http://picasaweb.google.com/" version="1.00">Picasaweb</generator>
+  <openSearch:totalResults>1</openSearch:totalResults>
+  <openSearch:startIndex>1</openSearch:startIndex>
+  <openSearch:itemsPerPage>1000</openSearch:itemsPerPage>
+  <gphoto:id>1000000450232683</gphoto:id>
+  <gphoto:name>InstantUpload</gphoto:name>
+  <gphoto:access>private</gphoto:access>
+  <gphoto:timestamp>1415811683000</gphoto:timestamp>
+  <gphoto:numphotos>2</gphoto:numphotos>
+  <gphoto:user>110748374958450232683</gphoto:user>
+  <gphoto:nickname>Martin Fourcade</gphoto:nickname>
+  <gphoto:albumType>InstantUpload</gphoto:albumType>
+  <gphoto:allowPrints>true</gphoto:allowPrints>
+  <gphoto:allowDownloads>true</gphoto:allowDownloads>
+  <entry gd:etag="&quot;YDoqeyI.&quot;">
+    <id>https://picasaweb.google.com/data/entry/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662944626984482</id>
+    <published>2014-11-17T13:18:48.000Z</published>
+    <updated>2016-09-18T08:54:05.391Z</updated>
+    <app:edited>2016-09-18T08:54:05.391Z</app:edited>
+    <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
+    <title>IMG_2112.mp4</title>
+    <summary/>
+    <content src="https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/IMG_2112.mp4" type="image/gif"/>
+    <link href="https://picasaweb.google.com/data/feed/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662944626984482?authkey=abc" rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml"/>
+    <link href="https://picasaweb.google.com/110748374958450232683/20141112?authkey=abc#6082662944626984482" rel="alternate" type="text/html"/>
+    <link href="https://picasaweb.google.com/lh/photo/B4zX6LqaDDnKs0gytKHvKtMTjNZETYmyPJy0liipFm0" rel="http://schemas.google.com/photos/2007#canonical" type="text/html"/>
+    <link href="https://picasaweb.google.com/data/entry/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662944626984482?authkey=abc" rel="self" type="application/atom+xml"/>
+    <link href="https://picasaweb.google.com/data/entry/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662944626984482?authkey=abc" rel="edit" type="application/atom+xml"/>
+    <link href="https://picasaweb.google.com/data/media/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662944626984482?authkey=abc" rel="edit-media" type="image/jpeg"/>
+    <link href="https://picasaweb.google.com/lh/reportAbuse?uname=110748374958450232683&amp;aid=6082662672787567857&amp;iid=6082662944626984482" rel="http://schemas.google.com/photos/2007#report" type="text/html"/>
+    <gphoto:id>6082662944626984482</gphoto:id>
+    <gphoto:albumid>1000000450232683</gphoto:albumid>
+    <gphoto:access>private</gphoto:access>
+    <gphoto:videostatus>final</gphoto:videostatus>
+    <gphoto:originalvideo audioCodec="AAC" channels="2" duration="2" fps="30.0" height="480" samplingrate="44.1" type="MOV" videoCodec="H264" width="480"/>
+    <gphoto:width>480</gphoto:width>
+    <gphoto:height>480</gphoto:height>
+    <gphoto:size>1103676</gphoto:size>
+    <gphoto:checksum/>
+    <gphoto:timestamp>1415811683000</gphoto:timestamp>
+    <gphoto:imageVersion>10102</gphoto:imageVersion>
+    <gphoto:commentingEnabled>true</gphoto:commentingEnabled>
+    <gphoto:commentCount>0</gphoto:commentCount>
+    <gphoto:streamId>cs_01_8ede7376552b4c5b9874cd1e849acf57</gphoto:streamId>
+    <gphoto:license id="0" name="All Rights Reserved" url="">ALL_RIGHTS_RESERVED</gphoto:license>
+    <gphoto:shapes faces="done"/>
+    <exif:tags>
+      <exif:imageUniqueID>d4802fe0144cf9f70000000000000000</exif:imageUniqueID>
+    </exif:tags>
+    <media:group>
+      <media:content height="480" medium="image" type="image/gif" url="https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/IMG_2112.mp4" width="480"/>
+      <media:content height="360" medium="video" type="video/mpeg4" url="https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18" width="360"/>
+      <media:credit>Martin Fourcade</media:credit>
+      <media:description type="plain"/>
+      <media:keywords/>
+      <media:thumbnail height="72" url="https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/s72/IMG_2112.mp4" width="72"/>
+      <media:thumbnail height="144" url="https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/s144/IMG_2112.mp4" width="144"/>
+      <media:thumbnail height="288" url="https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/s288/IMG_2112.mp4" width="288"/>
+      <media:title type="plain">IMG_2112.mp4</media:title>
+    </media:group>
+  </entry>
+  <entry gd:etag="&quot;YDsqeyI.&quot;">
+    <id>https://picasaweb.google.com/data/entry/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662630970241234</id>
+    <published>2014-11-17T13:17:35.000Z</published>
+    <updated>2016-09-08T17:29:12.453Z</updated>
+    <app:edited>2016-09-08T17:29:12.453Z</app:edited>
+    <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
+    <title>IMG_2102.JPG</title>
+    <summary/>
+    <content src="https://lh3.googleusercontent.com/-_UFBn8awweM/VGn1b3-GMNI/AAAAAAAAJ0k/py0Udh3NBl4plaDRP1ft9_LNUMvTixlrgCHM/IMG_2102.JPG" type="image/jpeg"/>
+    <link href="https://picasaweb.google.com/data/feed/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662630970241234?authkey=abc" rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml"/>
+    <link href="https://picasaweb.google.com/110748374958450232683/20141112?authkey=abc#6082662630970241234" rel="alternate" type="text/html"/>
+    <link href="https://picasaweb.google.com/lh/photo/68E6eQ2sOZZRoQ6atnpF_tMTjNZETYmyPJy0liipFm0" rel="http://schemas.google.com/photos/2007#canonical" type="text/html"/>
+    <link href="https://picasaweb.google.com/data/entry/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662630970241234?authkey=abc" rel="self" type="application/atom+xml"/>
+    <link href="https://picasaweb.google.com/data/entry/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662630970241234?authkey=abc" rel="edit" type="application/atom+xml"/>
+    <link href="https://picasaweb.google.com/data/media/api/user/110748374958450232683/albumid/6082662672787567857/photoid/6082662630970241234?authkey=abc" rel="edit-media" type="image/jpeg"/>
+    <link href="https://picasaweb.google.com/lh/reportAbuse?uname=110748374958450232683&amp;aid=6082662672787567857&amp;iid=6082662630970241234" rel="http://schemas.google.com/photos/2007#report" type="text/html"/>
+    <gphoto:id>6082662630970241234</gphoto:id>
+    <gphoto:albumid>1000000450232683</gphoto:albumid>
+    <gphoto:access>private</gphoto:access>
+    <gphoto:width>2592</gphoto:width>
+    <gphoto:height>1936</gphoto:height>
+    <gphoto:size>1962070</gphoto:size>
+    <gphoto:checksum/>
+    <gphoto:timestamp>1415651321000</gphoto:timestamp>
+    <gphoto:imageVersion>10057</gphoto:imageVersion>
+    <gphoto:commentingEnabled>true</gphoto:commentingEnabled>
+    <gphoto:commentCount>0</gphoto:commentCount>
+    <gphoto:streamId>cs_01_7d88675c939c7717846100823ec883f8</gphoto:streamId>
+    <gphoto:license id="0" name="All Rights Reserved" url="">ALL_RIGHTS_RESERVED</gphoto:license>
+    <gphoto:shapes faces="done"/>
+    <exif:tags>
+      <exif:fstop>2.8</exif:fstop>
+      <exif:make>Apple</exif:make>
+      <exif:model>iPhone 4</exif:model>
+      <exif:exposure>0.06666667</exif:exposure>
+      <exif:flash>false</exif:flash>
+      <exif:focallength>3.85</exif:focallength>
+      <exif:iso>800</exif:iso>
+      <exif:time>1415654921000</exif:time>
+      <exif:imageUniqueID>e429e7eaed97cb320000000000000000</exif:imageUniqueID>
+    </exif:tags>
+    <media:group>
+      <media:content height="383" medium="image" type="image/jpeg" url="https://lh3.googleusercontent.com/-_UFBn8awweM/VGn1b3-GMNI/AAAAAAAAJ0k/py0Udh3NBl4plaDRP1ft9_LNUMvTixlrgCHM/IMG_2102.JPG" width="512"/>
+      <media:credit>Martin Fourcade</media:credit>
+      <media:description type="plain"/>
+      <media:keywords/>
+      <media:thumbnail height="54" url="https://lh3.googleusercontent.com/-_UFBn8awweM/VGn1b3-GMNI/AAAAAAAAJ0k/py0Udh3NBl4plaDRP1ft9_LNUMvTixlrgCHM/s72/IMG_2102.JPG" width="72"/>
+      <media:thumbnail height="108" url="https://lh3.googleusercontent.com/-_UFBn8awweM/VGn1b3-GMNI/AAAAAAAAJ0k/py0Udh3NBl4plaDRP1ft9_LNUMvTixlrgCHM/s144/IMG_2102.JPG" width="144"/>
+      <media:thumbnail height="216" url="https://lh3.googleusercontent.com/-_UFBn8awweM/VGn1b3-GMNI/AAAAAAAAJ0k/py0Udh3NBl4plaDRP1ft9_LNUMvTixlrgCHM/s288/IMG_2102.JPG" width="288"/>
+      <media:title type="plain">IMG_2102.JPG</media:title>
+    </media:group>
+    <georss:where>
+      <gml:Point>
+        <gml:pos>48.9479944 2.6052138</gml:pos>
+      </gml:Point>
+    </georss:where>
+  </entry>
+
+</feed>
