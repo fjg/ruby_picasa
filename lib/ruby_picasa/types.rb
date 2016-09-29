@@ -1,11 +1,19 @@
 module RubyPicasa
   # attributes :url, :height, :width
-  class PhotoUrl < Objectify::ElementParser
+  class MediaUrl < Objectify::ElementParser
     attributes :url, :height, :width, :medium
+
+    def photo?
+      medium == 'image'
+    end
+
+    def video?
+      medium == 'video'
+    end
   end
 
 
-  class ThumbnailUrl < PhotoUrl
+  class ThumbnailUrl < MediaUrl
 
     # The name of the current thumbnail. For possible names, see Photo#url
     def thumb_name
@@ -34,7 +42,7 @@ module RubyPicasa
   #   attributes :updated, :title
   #
   #   has_many :links, Objectify::Atom::Link, 'link'
-  #   has_one :content, PhotoUrl, 'media:content'
+  #   has_one :content, MediaUrl, 'media:content'
   #   has_many :thumbnails, ThumbnailUrl, 'media:thumbnail'
   #   has_one :author, Objectify::Atom::Author, 'author'
   class Base < Objectify::DocumentParser
@@ -46,7 +54,7 @@ module RubyPicasa
     attributes :updated, :title
 
     has_many :links, Objectify::Atom::Link, 'link'
-    has_one :content, PhotoUrl, 'media:content'
+    has_many :contents, MediaUrl, 'media:content'
     has_many :thumbnails, ThumbnailUrl, 'media:thumbnail'
     has_one :author, Author, 'author'
 
@@ -86,6 +94,16 @@ module RubyPicasa
       if link = link('previous')
         session.get_url(link.href)
       end
+    end
+
+    def photo_content
+      contents.find(&:photo?)
+    end
+    alias_method :content, :photo_content
+
+
+    def video_content
+      contents.find(&:video?)
     end
 
     # Thumbnail names are by image width in pixels. Sizes up to 160 may be
