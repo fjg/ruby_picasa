@@ -115,7 +115,6 @@ describe RecentPhotos do
   end
 end
 
-require 'pry'
 describe Album do
   describe 'with Video' do
     before :all do
