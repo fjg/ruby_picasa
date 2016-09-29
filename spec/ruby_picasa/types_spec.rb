@@ -175,12 +175,22 @@ describe Album do
         @video.author.should be_nil
       end
 
-      it 'should have a content' do
-        @video.content.should be_an_instance_of(PhotoUrl)
+      it 'should have a video_content' do
+        @video.video_content.should be_an_instance_of(MediaUrl)
       end
 
-      it 'should have a content with medium as video' do
-        @video.content.medium.should == 'video'
+      it 'should have a video_content with medium as video' do
+        @video.video_content.medium.should == 'video'
+        @video.video_content.video?.should be(true)
+      end
+
+      it 'should have a photo_content' do
+        @video.photo_content.should be_an_instance_of(MediaUrl)
+      end
+
+      it 'should have a photo_content with medium as video' do
+        @video.photo_content.medium.should == 'image'
+        @video.photo_content.photo?.should be(true)
       end
 
       it 'should have a license' do
@@ -201,32 +211,32 @@ describe Album do
         @video.id.to_s.should match(/\A\d+\Z/)
       end
 
-      it 'should have a default url' do
-        @video.url.should == 'https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18'
+      it 'should have a default url (to image)' do
+        @video.url.should == 'https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/IMG_2112.mp4'
       end
 
       it 'should have thumbnail urls' do
         @video.url('72').should == 'https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/s72/IMG_2112.mp4'
       end
 
-      it 'should have a default video url with options true' do
+      it 'should have a default video poster url with options true' do
         @video.url(nil, true).should == [
-          'https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18',
-          { :width => 360, :height => 360 }
+          'https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/IMG_2112.mp4',
+          { :width => 480, :height => 480 }
         ]
       end
 
       it 'should have a default url with options' do
         @video.url(nil, :id => 'p').should == [
-          'https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18',
-          { :width => 360, :height => 360, :id => 'p' }
+          'https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/IMG_2112.mp4',
+          { :width => 480, :height => 480, :id => 'p' }
         ]
       end
 
       it 'should have a default url with options first' do
         @video.url(:id => 'p').should == [
-          'https://lh3.googleusercontent.com/vXVj5Zd5xjG4F0_WkdcucHQd6rC__ziB12FTJaDMau7IIfjyjvDZT7SUvH_vbD6h516iX61-pw=m18',
-          { :width => 360, :height => 360, :id => 'p' }
+          'https://lh3.googleusercontent.com/-Qg9di7kDSgQ/VGn1uIbsRiI/AAAAAAAAJ3Y/hqfZkEJ3KMAe-OX8_MTHoMW5upRY7wfTQCHM/IMG_2112.mp4',
+          { :width => 480, :height => 480, :id => 'p' }
         ]
       end
 
@@ -281,8 +291,8 @@ describe Album do
         @video.videostatus.should == 'final'
       end
 
-      it 'should have a content[medium]' do
-        @video.content.medium == 'video'
+      it 'should have a video_content[medium]' do
+        @video.video_content.medium == 'video'
       end
     end
   end
@@ -368,7 +378,11 @@ describe Album do
       end
 
       it 'should have a content' do
-        @photo.content.should be_an_instance_of(PhotoUrl)
+        @photo.content.should be_an_instance_of(MediaUrl)
+      end
+
+      it 'should have a content like photo_content' do
+        @photo.content.should == @photo.photo_content
       end
 
       it 'should have a license' do
