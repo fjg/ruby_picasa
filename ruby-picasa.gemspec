@@ -18,33 +18,33 @@ Gem::Specification.new do |s|
   eos
 
   s.files = [
-     ".gitignore",
-     "History.txt",
-     "Manifest.txt",
-     "README.txt",
-     "Rakefile",
-     "VERSION",
-     "init.rb",
-     "lib/ruby_picasa.rb",
-     "lib/ruby_picasa/types.rb",
-     "ruby-picasa.gemspec",
-     "spec/ruby_picasa/types_spec.rb",
-     "spec/ruby_picasa_spec.rb",
-     "spec/sample/album.atom",
-     "spec/sample/recent.atom",
-     "spec/sample/search-geo-1-result.atom",
-     "spec/sample/search-without-category.xml",
-     "spec/sample/search.atom",
-     "spec/sample/user-without-photos.xml",
-     "spec/sample/user.atom",
-     "spec/spec_helper.rb"
+    '.gitignore',
+    'History.txt',
+    'Manifest.txt',
+    'README.txt',
+    'Rakefile',
+    'VERSION',
+    'init.rb',
+    'lib/ruby_picasa.rb',
+    'lib/ruby_picasa/types.rb',
+    'ruby-picasa.gemspec',
+    'spec/ruby_picasa/types_spec.rb',
+    'spec/ruby_picasa_spec.rb',
+    'spec/sample/album.atom',
+    'spec/sample/recent.atom',
+    'spec/sample/search-geo-1-result.atom',
+    'spec/sample/search-without-category.xml',
+    'spec/sample/search.atom',
+    'spec/sample/user-without-photos.xml',
+    'spec/sample/user.atom',
+    'spec/spec_helper.rb'
   ]
   s.test_files    = `git ls-files -- spec/*`.split("\n")
   s.require_paths = ['lib']
   s.platform      = Gem::Platform::RUBY
 
   s.extra_rdoc_files = ['README.txt']
-  s.rdoc_options = ["--charset=UTF-8"]
+  s.rdoc_options = ['--charset=UTF-8']
 
   s.add_dependency 'activesupport', '>= 3.2'
   s.add_dependency 'googleauth', '>= 0.5.1'
