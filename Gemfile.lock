@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruby-picasa (0.2.5)
+    ruby-picasa (0.2.6)
       activesupport (>= 3.2)
       googleauth (>= 0.5.1)
       objectify-xml (>= 0.2.3)
