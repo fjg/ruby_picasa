@@ -7,7 +7,7 @@ group :development do
   gem 'hoe'
   gem 'rubocop'
   gem 'mocha'
-  gem 'bundler', '1.11.2'
+  gem 'bundler'
   gem 'rake', '~> 10.0'
   gem 'rspec', '~> 3.0'
   gem 'pry'

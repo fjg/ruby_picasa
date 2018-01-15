@@ -9,17 +9,18 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (4.2.5.2)
+    activesupport (5.1.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
-      json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.4.0)
+    addressable (2.5.1)
+      public_suffix (~> 2.0, >= 2.0.2)
     ast (2.3.0)
     coderay (1.1.1)
+    concurrent-ruby (1.0.5)
     diff-lcs (1.2.5)
-    faraday (0.9.2)
+    faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     googleauth (0.5.1)
       faraday (~> 0.9)
@@ -31,24 +32,23 @@ GEM
       signet (~> 0.7)
     hoe (3.15.1)
       rake (>= 0.8, < 12.0)
-    i18n (0.7.0)
-    json (1.8.3)
+    i18n (0.8.4)
     jwt (1.5.6)
     little-plugger (1.1.4)
-    logging (2.0.0)
+    logging (2.1.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    memoist (0.14.0)
+    memoist (0.15.0)
     metaclass (0.0.4)
     method_source (0.8.2)
-    mini_portile2 (2.0.0)
-    minitest (5.8.4)
+    mini_portile2 (2.2.0)
+    minitest (5.10.2)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
-    multi_json (1.11.2)
+    multi_json (1.12.1)
     multipart-post (2.0.0)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
     objectify-xml (0.2.3)
       activesupport
       nokogiri
@@ -62,6 +62,7 @@ GEM
       slop (~> 3.4)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
+    public_suffix (2.0.5)
     rainbow (2.1.0)
     rake (10.5.0)
     rspec (3.4.0)
@@ -84,14 +85,14 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
-    signet (0.7.2)
+    signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
     slop (3.6.0)
-    thread_safe (0.3.5)
-    tzinfo (1.2.2)
+    thread_safe (0.3.6)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     unicode-display_width (1.1.1)
 
@@ -99,7 +100,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (= 1.11.2)
+  bundler
   hoe
   mocha
   pry
@@ -110,4 +111,4 @@ DEPENDENCIES
   ruby-picasa!
 
 BUNDLED WITH
-   1.11.2
+   1.15.3
