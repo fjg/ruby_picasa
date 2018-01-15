@@ -26,14 +26,14 @@ describe 'Picasa class methods' do
     end
 
     it 'should be true if there is a token' do
-      request_params = {'code' => 'abc'}
+      request_params = { 'code' => 'abc' }
       Picasa.code_in_request_params?(request_params).should be true
     end
   end
 
   describe 'code_from_request_params' do
     it 'should pluck the token from the request' do
-      request_params = {'code' => 'abc'}
+      request_params = { 'code' => 'abc' }
       Picasa.code_from_request_params(request_params).should == 'abc'
     end
     it 'should raise if no token is present' do
@@ -51,7 +51,7 @@ describe 'Picasa class methods' do
     picasa = mock('picasa')
     request_params = { code: 'abc' }
     Picasa.expects(:new).with(instance_of(Google::Auth::UserRefreshCredentials)).returns(picasa)
-    picasa.expects(:authorize_token!).with()
+    picasa.expects(:authorize_token!).with
     Picasa.authorize_request(client_id, token_store, redirect_uri, request_params).should == picasa
   end
 
@@ -68,72 +68,72 @@ describe 'Picasa class methods' do
 
   describe 'path' do
     it 'should use parse_url and add options' do
-      Picasa.expects(:parse_url).with({}).returns(['url', {'a' => 'b'}])
+      Picasa.expects(:parse_url).with({}).returns(['url', { 'a' => 'b' }])
       Picasa.path({}).should ==
-        "url?a=b"
+        'url?a=b'
     end
     it 'should build the url from user_id and album_id and add options' do
-      hash = { :user_id => '123', :album_id => '321' }
+      hash = { user_id: '123', album_id: '321' }
       Picasa.expects(:parse_url).with(hash).returns([nil, {}])
       Picasa.path(hash).should ==
-        "/data/feed/api/user/123/albumid/321?kind=photo"
+        '/data/feed/api/user/123/albumid/321?kind=photo'
     end
     it 'should build the url from special user_id all' do
-      hash = { :user_id => 'all' }
+      hash = { user_id: 'all' }
       Picasa.expects(:parse_url).with(hash).returns([nil, {}])
       Picasa.path(hash).should ==
-        "/data/feed/api/all"
+        '/data/feed/api/all'
     end
-    [ :max_results, :start_index, :tag, :q, :kind,
-      :access, :bbox, :l].each do |arg|
-      it "should add #{ arg } to options" do
+    [:max_results, :start_index, :tag, :q, :kind,
+     :access, :bbox, :l].each do |arg|
+      it "should add #{arg} to options" do
         Picasa.path(:url => 'url', arg => '!value').should ==
-          "url?#{ arg.to_s.dasherize }=%21value"
+          "url?#{arg.to_s.dasherize}=%21value"
       end
     end
-    [ :imgmax, :thumbsize ].each do |arg|
-      it "should raise PicasaError with invalid #{ arg } option" do
+    [:imgmax, :thumbsize].each do |arg|
+      it "should raise PicasaError with invalid #{arg} option" do
         lambda do
           Picasa.path(:url => 'url', arg => 'invalid')
         end.should raise_error(RubyPicasa::PicasaError)
       end
     end
-    [ :imgmax, :thumbsize ].each do |arg|
-      it "should add #{ arg } to options" do
+    [:imgmax, :thumbsize].each do |arg|
+      it "should add #{arg} to options" do
         Picasa.path(:url => 'url', arg => '72').should ==
-          "url?#{ arg.to_s.dasherize }=72"
+          "url?#{arg.to_s.dasherize}=72"
       end
     end
     it 'should ignore unknown options' do
-      Picasa.path(:url => 'place', :eggs => 'over_easy').should == 'place'
+      Picasa.path(url: 'place', eggs: 'over_easy').should == 'place'
     end
   end
 
   describe 'parse_url' do
     it 'should prefer url' do
-      hash = { :url => 'url', :user_id => 'user_id', :album_id => 'album_id' }
+      hash = { url: 'url', user_id: 'user_id', album_id: 'album_id' }
       Picasa.parse_url(hash).should == ['url', {}]
     end
     it 'should next prefer user_id' do
       Picasa.stubs(:is_url?).returns true
-      hash = { :user_id => 'user_id', :album_id => 'album_id' }
+      hash = { user_id: 'user_id', album_id: 'album_id' }
       Picasa.parse_url(hash).should == ['user_id', {}]
     end
     it 'should use album_id' do
       Picasa.stubs(:is_url?).returns true
-      hash = { :album_id => 'album_id' }
+      hash = { album_id: 'album_id' }
       Picasa.parse_url(hash).should == ['album_id', {}]
     end
     it 'should split up the params' do
-      hash = { :url => 'url?specs=fun%21' }
+      hash = { url: 'url?specs=fun%21' }
       Picasa.parse_url(hash).should == ['url', { 'specs' => 'fun!' }]
     end
     it 'should not use non-url user_id or album_id' do
-      hash = { :user_id => 'user_id', :album_id => 'album_id' }
+      hash = { user_id: 'user_id', album_id: 'album_id' }
       Picasa.parse_url(hash).should == [nil, {}]
     end
     it 'should handle with no relevant options' do
-      hash = { :saoetu => 'aeu' }
+      hash = { saoetu: 'aeu' }
       Picasa.parse_url(hash).should == [nil, {}]
     end
   end
@@ -164,7 +164,7 @@ describe Picasa do
       @p.expects(:auth_header).returns('Authorization' => 'etc')
       @http.expects(:use_ssl=).with true
       @http.expects(:get).with('/accounts/accounts/AuthSubSessionToken',
-        'Authorization' => 'etc').returns(@response)
+                               'Authorization' => 'etc').returns(@response)
     end
 
     xit 'should set the new token' do
@@ -183,34 +183,34 @@ describe Picasa do
   end
 
   it 'should get the user' do
-    @p.expects(:get).with(:user_id => nil)
+    @p.expects(:get).with(user_id: nil)
     @p.user
   end
 
   it 'should get an album' do
-    @p.expects(:get).with(:album_id => 'album')
+    @p.expects(:get).with(album_id: 'album')
     @p.album('album')
   end
 
   it 'should get a url' do
-    @p.expects(:get).with(:url => 'the url')
+    @p.expects(:get).with(url: 'the url')
     @p.get_url('the url')
   end
 
   describe 'search' do
     it 'should prefer given options' do
-      @p.expects(:get).with(:q => 'q', :max_results => 20, :user_id => 'me', :kind => 'comments')
-      @p.search('q', :max_results => 20, :user_id => 'me', :kind => 'comments', :q => 'wrong')
+      @p.expects(:get).with(q: 'q', max_results: 20, user_id: 'me', kind: 'comments')
+      @p.search('q', max_results: 20, user_id: 'me', kind: 'comments', q: 'wrong')
     end
     it 'should have good defaults' do
-      @p.expects(:get).with(:q => 'q', :max_results => 10, :user_id => 'all', :kind => 'photo')
+      @p.expects(:get).with(q: 'q', max_results: 10, user_id: 'all', kind: 'photo')
       @p.search('q')
     end
   end
 
   it 'should get recent photos' do
-    @p.expects(:get).with(:recent_photos => true, :max_results => 10)
-    @p.recent_photos :max_results => 10
+    @p.expects(:get).with(recent_photos: true, max_results: 10)
+    @p.recent_photos max_results: 10
   end
 
   describe 'album_by_title' do
@@ -219,8 +219,8 @@ describe Picasa do
       @a2 = mock('a2')
       @a1.stubs(:title).returns('a1')
       @a2.stubs(:title).returns('a2')
-      albums = [ @a1, @a2 ]
-      user = mock('user', :albums => albums)
+      albums = [@a1, @a2]
+      user = mock('user', albums: albums)
       @p.expects(:user).returns(user)
     end
 
@@ -284,7 +284,7 @@ describe Picasa do
     it 'yields fresh xml' do
       body 'fresh xml'
       yielded = false
-      @p.with_cache(:url => 'place') do |xml|
+      @p.with_cache(url: 'place') do |xml|
         yielded = true
         xml.should == 'fresh xml'
       end
@@ -294,7 +294,7 @@ describe Picasa do
     it 'yields cached xml' do
       @p.instance_variable_get('@request_cache')['place'] = 'some xml'
       yielded = false
-      @p.with_cache(:url => 'place') do |xml|
+      @p.with_cache(url: 'place') do |xml|
         yielded = true
         xml.should == 'some xml'
       end
@@ -364,9 +364,9 @@ describe Picasa do
     xit 'raises an error for invalid feed category types' do
       @p.stubs(:xml_data).with(:xml).returns(['xml', @album, @user])
 
-      expect {
+      expect do
         @p.class_from_xml(:xml)
-      }.to raise_error(RubyPicasa::PicasaError)
+      end.to raise_error(RubyPicasa::PicasaError)
     end
   end
 end
