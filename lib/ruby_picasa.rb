@@ -315,8 +315,7 @@ class Picasa
   # Returns the header data needed to make Google OAuth2 requests.
   def add_auth_headers(req)
     req['GData-Version'] = '2'
-    if @credentials &&
-       !@credentials.access_token.nil? && !@credentials.expires_within?(60)
+    if @credentials && !@credentials.access_token.nil?
       req['Authorization'] = "Bearer #{@credentials.access_token}"
     end
     req
